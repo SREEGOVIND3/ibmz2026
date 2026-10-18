@@ -4,7 +4,6 @@
 ### Drift-Aware, Zero-Leakage Privacy Gateway for Enterprise AI on IBM Z & LinuxONE (`s390x`)
 
 [![IBM Z / LinuxONE Native](https://img.shields.io/badge/Architecture-IBM%20Z%20%7C%20LinuxONE%20(s390x)-0F62FE?style=for-the-badge&logo=ibm)](https://www.ibm.com/it-infrastructure/z)
-[![Zero Leakage Guarantee](https://img.shields.io/badge/Guarantee-0.00%25%20Downstream%20Leakage-10B981?style=for-the-badge)](docs/diagrams/solution_flowchart.png)
 [![Ultra-Low Latency](https://img.shields.io/badge/Latency-%3C%201.5%20ms%20Gateway%20SLA-38BDF8?style=for-the-badge)](results/ablation.json)
 [![Tests Passing](https://img.shields.io/badge/Tests-84%2F84%20Passing%20(0.24s)-success?style=for-the-badge)](tests/)
 [![Security](https://img.shields.io/badge/Security-Fail--Closed%20%2B%20CPACF%20Crypto-8B5CF6?style=for-the-badge)](docs/diagrams/ibmz_linuxone_co_design.png)
