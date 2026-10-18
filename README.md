@@ -83,9 +83,8 @@ ConsentShield is co-designed from the ground up to exploit the hardware and oper
 
 ConsentShield operates as a high-performance reverse proxy positioned between client applications and downstream AI models:
 
-<div align="center">
-  <img src="docs/diagrams/architecture_diagram.png" alt="ConsentShield Architecture Diagram" width="900" />
-</div>
+<img width="2752" height="1536" alt="Gemini_Generated_Image_st7623st7623st76" src="https://github.com/user-attachments/assets/8f0d7c57-d5ad-4d3d-bb59-a4e8f0b79c88" />
+
 
 ### Architectural Workflow:
 1. **Client Ingestion:** Accepts structured JSON payloads or unstructured free-text prompts via FastAPI ASGI endpoints (`POST /ingest`). Validates envelope constraints, purpose, destination, and size limits (1 MB default).
@@ -109,9 +108,8 @@ ConsentShield operates as a high-performance reverse proxy positioned between cl
 
 ## 🏛️ IBM Z & LinuxONE (`s390x`) Hardware Co-Design
 
-<div align="center">
-  <img src="docs/diagrams/ibmz_linuxone_co_design.png" alt="IBM Z Co-Design Diagram" width="900" />
-</div>
+<img width="2752" height="1536" alt="Gemini_Generated_Image_c1xupcc1xupcc1xu" src="https://github.com/user-attachments/assets/3a3ebc03-ba9c-4511-9ab8-58972881b151" />
+
 
 | Co-Design Pillar | Mainframe Advantage (`s390x`) | ConsentShield Implementation |
 | :--- | :--- | :--- |
