@@ -1,0 +1,233 @@
+{
+  "machine": "AMD64",
+  "dataset": "data\\merged_gliner\\test_gliner.jsonl",
+  "test_rows_total": 25290,
+  "selected_rows": 1000,
+  "selected_by_source": {
+    "ai4privacy": 500,
+    "consentshield_synthetic": 500
+  },
+  "detector_status": {
+    "backend": "validators",
+    "gliner_requested": false,
+    "gliner_available": false,
+    "reason": "GLiNER disabled (CONSENTSHIELD_GLINER_ENABLED not set)",
+    "model_version": "validators-v1"
+  },
+  "validators": {
+    "exact": {
+      "gold": 776,
+      "predicted": 368,
+      "tp": 107,
+      "fp": 261,
+      "fn": 669,
+      "precision": 0.2907608695652174,
+      "recall": 0.13788659793814434,
+      "f1": 0.18706293706293708
+    },
+    "relaxed_iou_0_5": {
+      "gold": 776,
+      "predicted": 368,
+      "tp": 308,
+      "fp": 60,
+      "fn": 468,
+      "precision": 0.8369565217391305,
+      "recall": 0.39690721649484534,
+      "f1": 0.5384615384615384
+    },
+    "rows": 1000
+  },
+  "latency_ms_validators_p50": 0.04754998371936381,
+  "latency_ms_validators_p95": 0.10970501753035933,
+  "gliner": {
+    "status": "NOT RUN; detector factory returned validators fallback"
+  },
+  "validators_by_source": {
+    "ai4privacy": {
+      "exact": {
+        "gold": 505,
+        "predicted": 243,
+        "tp": 79,
+        "fp": 164,
+        "fn": 426,
+        "precision": 0.32510288065843623,
+        "recall": 0.15643564356435644,
+        "f1": 0.2112299465240642
+      },
+      "relaxed_iou_0_5": {
+        "gold": 505,
+        "predicted": 243,
+        "tp": 183,
+        "fp": 60,
+        "fn": 322,
+        "precision": 0.7530864197530864,
+        "recall": 0.36237623762376237,
+        "f1": 0.48930481283422456
+      },
+      "rows": 500
+    },
+    "consentshield_synthetic": {
+      "exact": {
+        "gold": 271,
+        "predicted": 125,
+        "tp": 28,
+        "fp": 97,
+        "fn": 243,
+        "precision": 0.224,
+        "recall": 0.1033210332103321,
+        "f1": 0.1414141414141414
+      },
+      "relaxed_iou_0_5": {
+        "gold": 271,
+        "predicted": 125,
+        "tp": 125,
+        "fp": 0,
+        "fn": 146,
+        "precision": 1.0,
+        "recall": 0.4612546125461255,
+        "f1": 0.6313131313131314
+      },
+      "rows": 500
+    }
+  },
+  "validator_category_metrics": {
+    "CONSENTSHIELD_CONTACT": {
+      "gold": 240,
+      "predicted": 283,
+      "tp": 235,
+      "fp": 48,
+      "fn": 5,
+      "precision": 0.8303886925795053,
+      "recall": 0.9791666666666666,
+      "f1": 0.8986615678776291
+    },
+    "CONSENTSHIELD_CREDENTIAL": {
+      "gold": 48,
+      "predicted": 53,
+      "tp": 48,
+      "fp": 5,
+      "fn": 0,
+      "precision": 0.9056603773584906,
+      "recall": 1.0,
+      "f1": 0.9504950495049505
+    },
+    "CONSENTSHIELD_FINANCIAL": {
+      "gold": 49,
+      "predicted": 7,
+      "tp": 2,
+      "fp": 5,
+      "fn": 47,
+      "precision": 0.2857142857142857,
+      "recall": 0.04081632653061224,
+      "f1": 0.07142857142857142
+    },
+    "CONSENTSHIELD_GOVERNMENT_ID": {
+      "gold": 49,
+      "predicted": 25,
+      "tp": 23,
+      "fp": 2,
+      "fn": 26,
+      "precision": 0.92,
+      "recall": 0.46938775510204084,
+      "f1": 0.6216216216216216
+    },
+    "CONSENTSHIELD_HEALTH": {
+      "gold": 15,
+      "predicted": 0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 15,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+    },
+    "CONSENTSHIELD_IDENTITY": {
+      "gold": 375,
+      "predicted": 0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 375,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+    }
+  },
+  "credential_gold_spans_by_source": {
+    "ai4privacy": 0,
+    "consentshield_synthetic": 48
+  },
+  "adversarial_smoke": [
+    {
+      "case_id": "adv-001",
+      "expected_action": "REDACT_SPAN",
+      "expected_forwarded": true,
+      "detector_fired_on_any_string": true
+    },
+    {
+      "case_id": "adv-002",
+      "expected_action": "QUARANTINE_PAYLOAD",
+      "expected_forwarded": false,
+      "detector_fired_on_any_string": true
+    },
+    {
+      "case_id": "adv-003",
+      "expected_action": "ALLOW",
+      "expected_forwarded": true,
+      "detector_fired_on_any_string": false
+    },
+    {
+      "case_id": "adv-004",
+      "expected_action": "QUARANTINE_FIELD",
+      "expected_forwarded": true,
+      "detector_fired_on_any_string": true
+    },
+    {
+      "case_id": "adv-005",
+      "expected_action": "ALLOW",
+      "expected_forwarded": true,
+      "detector_fired_on_any_string": false
+    },
+    {
+      "case_id": "adv-006",
+      "expected_action": "REDACT_SPAN",
+      "expected_forwarded": true,
+      "detector_fired_on_any_string": true
+    },
+    {
+      "case_id": "adv-007",
+      "expected_action": "REVIEW",
+      "expected_forwarded": false,
+      "detector_fired_on_any_string": false
+    },
+    {
+      "case_id": "adv-008",
+      "expected_action": "QUARANTINE_PAYLOAD",
+      "expected_forwarded": false,
+      "detector_fired_on_any_string": false
+    },
+    {
+      "case_id": "adv-009",
+      "expected_action": "ALLOW",
+      "expected_forwarded": true,
+      "detector_fired_on_any_string": false
+    },
+    {
+      "case_id": "adv-010",
+      "expected_action": "BLOCK_FORWARD",
+      "expected_forwarded": false,
+      "detector_fired_on_any_string": true
+    },
+    {
+      "case_id": "adv-011",
+      "expected_action": "REVIEW",
+      "expected_forwarded": false,
+      "detector_fired_on_any_string": false
+    },
+    {
+      "case_id": "adv-012",
+      "expected_action": "ALLOW",
+      "expected_forwarded": true,
+      "detector_fired_on_any_string": false
+    }
+  ]
+}

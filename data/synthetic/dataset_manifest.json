@@ -1,0 +1,51 @@
+{
+  "generator": "ConsentShield corrected synthetic generator",
+  "seed": 42,
+  "structured_records_requested": 7000,
+  "structured_scenario_counts": {
+    "CLEAN": 1000,
+    "PII_IN_SAFE_TEXT_FIELD": 1000,
+    "NEW_SENSITIVE_FIELD": 1000,
+    "RENAMED_SENSITIVE_FIELD": 1000,
+    "TYPE_SHIFT": 1000,
+    "CREDENTIAL_LEAK": 1000,
+    "DISTRIBUTION_SHIFT": 1000
+  },
+  "split_counts": {
+    "train": 5551,
+    "validation": 714,
+    "test": 735
+  },
+  "field_feature_columns": [
+    "field_path",
+    "field_name",
+    "parent_path",
+    "value_type",
+    "value_length",
+    "digit_ratio",
+    "alpha_ratio",
+    "symbol_ratio",
+    "entropy",
+    "has_email_pattern",
+    "has_phone_pattern",
+    "has_card_pattern",
+    "has_government_id_pattern",
+    "has_credential_name_hint",
+    "is_new_field",
+    "is_renamed_field",
+    "has_type_shift",
+    "has_distribution_shift"
+  ],
+  "excluded_from_model_features": [
+    "record_id",
+    "group_id",
+    "split",
+    "category",
+    "scenario",
+    "expected_action",
+    "label_sensitive",
+    "label_drift_anomaly",
+    "raw value"
+  ],
+  "warning": "Synthetic data is for development and controlled evaluation; it does not establish real-world performance."
+}

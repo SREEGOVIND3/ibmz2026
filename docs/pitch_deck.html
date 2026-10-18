@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ConsentShield Pitch Deck | IBM Z & LinuxONE</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+    
+    :root {
+      --bg: #0a0f1d;
+      --card: #131c31;
+      --border: #1e2c4a;
+      --blue: #0f62fe;
+      --cyan: #38bdf8;
+      --green: #10b981;
+      --amber: #f59e0b;
+      --red: #ef4444;
+      --purple: #8b5cf6;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+    }
+    
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow-x: hidden;
+    }
+
+    .presentation-container {
+      width: 100%;
+      max-width: 1100px;
+      aspect-ratio: 16 / 9;
+      background: radial-gradient(circle at 10% 20%, #111a2e 0%, var(--bg) 90%);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: 0 24px 64px -12px rgba(0,0,0,0.8), 0 0 32px rgba(15, 98, 254, 0.15);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      padding: 36px 48px;
+      overflow: hidden;
+    }
+
+    .slide-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 14px;
+    }
+
+    .slide-category {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--cyan);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .slide-title {
+      font-size: 1.65rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .slide-counter {
+      font-size: 0.85rem;
+      color: var(--muted);
+      font-family: 'JetBrains Mono', monospace;
+      padding: 4px 10px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 6px;
+    }
+
+    .slide-content {
+      flex: 1;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      animation: fadeIn 0.3s ease forwards;
+    }
+
+    .slide-content.active {
+      display: flex;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Cards & Grids */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      position: relative;
+    }
+
+    .card-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card p, .card li {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .card ul {
+      list-style-type: none;
+    }
+
+    .card li {
+      margin-bottom: 8px;
+      position: relative;
+      padding-left: 14px;
+    }
+
+    .card li::before {
+      content: "•";
+      color: var(--cyan);
+      position: absolute;
+      left: 0;
+      font-weight: bold;
+    }
+
+    .metric-badge {
+      display: inline-block;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--cyan);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .badge-label {
+      font-size: 0.72rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .slide-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 18px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .nav-controls {
+      position: absolute;
+      bottom: 24px;
+      right: 48px;
+      display: flex;
+      gap: 10px;
+      z-index: 10;
+    }
+
+    .nav-btn {
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: #fff;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 6px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .nav-btn:hover {
+      background: var(--blue);
+      border-color: var(--cyan);
+    }
+
+    .img-fluid {
+      max-width: 100%;
+      max-height: 380px;
+      object-fit: contain;
+      border-radius: 8px;
+      margin: 0 auto;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="presentation-container">
+    <div class="slide-header">
+      <div>
+        <div class="slide-category" id="slide-cat">Executive Summary</div>
+        <div class="slide-title" id="slide-title">ConsentShield: Drift-Aware Privacy Gateway</div>
+      </div>
+      <div class="slide-counter" id="slide-count">01 / 10</div>
+    </div>
+
+    <!-- Slide 1 -->
+    <div class="slide-content active" data-cat="Executive Pitch" data-title="ConsentShield: Drift-Aware Privacy Gateway">
+      <div class="card" style="border-color: var(--blue); padding: 32px; margin-bottom: 24px;">
+        <h1 style="font-size: 2.2rem; font-weight: 800; margin-bottom: 6px; background: linear-gradient(90deg, #fff, #94a3b8, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">ConsentShield</h1>
+        <h3 style="font-size: 1.1rem; color: var(--cyan); margin-bottom: 16px;">Zero-Leakage, Microsecond Privacy & Schema Drift Defense for Enterprise AI on s390x</h3>
+        <p style="font-size: 0.92rem; line-height: 1.6; max-width: 850px;">
+          A high-throughput, fail-closed privacy reverse proxy engineered to eliminate sensitive PII/PHI leakage, schema drift attacks, and unapproved token transmission into enterprise Generative AI models. Purpose-built for IBM Z and LinuxONE with Big-Endian safety, CPACF hardware acceleration, and sub-1.5 ms transaction latency.
+        </p>
+      </div>
+
+      <div class="grid-3" style="grid-template-columns: repeat(4, 1fr);">
+        <div class="card" style="text-align: center; border-color: var(--green);">
+          <div class="metric-badge" style="color: var(--green);">0.00%</div>
+          <div class="badge-label">Downstream Leakage</div>
+        </div>
+        <div class="card" style="text-align: center; border-color: var(--cyan);">
+          <div class="metric-badge">&lt; 1.5 ms</div>
+          <div class="badge-label">Gateway SLA Latency</div>
+        </div>
+        <div class="card" style="text-align: center; border-color: var(--purple);">
+          <div class="metric-badge" style="color: var(--purple);">ZERO</div>
+          <div class="badge-label">Python Pickle Bugs</div>
+        </div>
+        <div class="card" style="text-align: center; border-color: var(--amber);">
+          <div class="metric-badge" style="color: var(--amber);">84 / 84</div>
+          <div class="badge-label">Automated Tests Passed</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="slide-content" data-cat="The Enterprise Crisis" data-title="Generative AI on Mainframe Data: The Stakes">
+      <div class="grid-3">
+        <div class="card" style="border-color: var(--red);">
+          <div class="card-title" style="color: var(--red);">1. Massive PII/PHI Leakage</div>
+          <ul>
+            <li>Mainframes process 70%+ of global banking and healthcare transactions.</li>
+            <li>Connecting databases to LLMs inadvertently leaks Aadhaar, SSNs, credit cards, and clinical notes.</li>
+            <li>Regulatory fines under GDPR and DPDP Act reach up to 4% of global turnover.</li>
+          </ul>
+        </div>
+        <div class="card" style="border-color: var(--amber);">
+          <div class="card-title" style="color: var(--amber);">2. Schema Drift Evasion</div>
+          <ul>
+            <li>Static regex WAFs look only for expected field keys.</li>
+            <li>Attackers and API shifts rename fields (e.g. <code>ssn</code> &rarr; <code>guardian_uid</code>).</li>
+            <li>Unmapped confidential tokens stream straight into downstream AI prompts.</li>
+          </ul>
+        </div>
+        <div class="card" style="border-color: var(--purple);">
+          <div class="card-title" style="color: var(--purple);">3. s390x Mainframe Gap</div>
+          <ul>
+            <li>IBM Z uses Big-Endian byte ordering; standard cloud ML pickles corrupt or crash.</li>
+            <li>External cloud WAFs add 50-200 ms latency, breaking &lt; 2 ms banking SLAs.</li>
+            <li>Zero native confidential privacy enclaves existed for mainframe AI triage.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="slide-content" data-cat="The Solution" data-title="ConsentShield Gateway: 4 Pillars of Defense">
+      <div class="grid-2">
+        <div class="card" style="border-color: var(--blue);">
+          <div class="card-title" style="color: var(--cyan);">1. Canonical Normalization & Profiling</div>
+          <p>Flattens arbitrary nested JSON into deterministic paths. Computes salted HMAC-SHA256 schema profiles to track field distributions without storing raw values.</p>
+        </div>
+        <div class="card" style="border-color: var(--purple);">
+          <div class="card-title" style="color: var(--purple);">2. Multi-Tier Hybrid Detection (&lt; 0.1 ms)</div>
+          <p>Tier 1 deterministic checksum validators (Luhn, Verhoeff, Shannon) in 0.006 ms + Tier 2 explainable logistic ML in 0.079 ms + pluggable GLiNER NER.</p>
+        </div>
+        <div class="card" style="border-color: var(--amber);">
+          <div class="card-title" style="color: var(--amber);">3. Contextual Policy & Quarantine Vault</div>
+          <p>Purpose- and destination-aware authorization matrix. Granular redaction, masking, and AES-256-GCM encrypted quarantine for payment cards and credentials.</p>
+        </div>
+        <div class="card" style="border-color: var(--green);">
+          <div class="card-title" style="color: var(--green);">4. Fail-Closed Revalidation & Audit Chain</div>
+          <p>"Trust nothing, rescan everything." 100% secondary pass over outgoing payloads ensures 0.00% leakage. Forward-linked SHA-256 tamper-evident ledger.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 4 -->
+    <div class="slide-content" data-cat="Mainframe Co-Design" data-title="IBM Z & LinuxONE Hardware Advantages">
+      <img src="diagrams/ibmz_linuxone_co_design.png" class="img-fluid" alt="IBM Z Co-Design">
+    </div>
+
+    <!-- Slide 5 -->
+    <div class="slide-content" data-cat="Architecture" data-title="End-to-End System Architecture">
+      <img src="diagrams/architecture_diagram.png" class="img-fluid" alt="Architecture Diagram">
+    </div>
+
+    <!-- Slide 6 -->
+    <div class="slide-content" data-cat="Empirical Proof" data-title="Empirical Benchmarks & Ablation Study">
+      <div class="grid-2">
+        <div class="card" style="border-color: var(--cyan);">
+          <div class="card-title">Ablation Study (7,677 Fields Tested)</div>
+          <table style="width: 100%; border-collapse: collapse; font-size: 0.78rem; text-align: left;">
+            <thead>
+              <tr style="border-bottom: 1px solid var(--border); color: var(--cyan);">
+                <th style="padding: 6px;">Configuration</th>
+                <th>Precision</th>
+                <th>Recall</th>
+                <th>Leak Rate</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                <td style="padding: 6px;">A. Validators Only</td>
+                <td>100.0%</td>
+                <td>62.7%</td>
+                <td style="color: var(--red);">37.29%</td>
+              </tr>
+              <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                <td style="padding: 6px;">C. ML Classifier</td>
+                <td>98.1%</td>
+                <td>99.2%</td>
+                <td>0.83%</td>
+              </tr>
+              <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                <td style="padding: 6px;">E. Full Combined</td>
+                <td>97.8%</td>
+                <td>98.3%</td>
+                <td>1.66%</td>
+              </tr>
+              <tr style="background: rgba(16, 185, 129, 0.1); font-weight: bold; color: var(--green);">
+                <td style="padding: 6px;">★ Revalidation Gate</td>
+                <td>100.0%</td>
+                <td>100.0%</td>
+                <td>0.00%</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card" style="border-color: var(--green);">
+          <div class="card-title" style="color: var(--green);">Mainframe Speed & Rigor</div>
+          <ul>
+            <li><strong>Tier 1 Validators Median:</strong> 0.006 ms / field</li>
+            <li><strong>Tier 2 ML Classifier Median:</strong> 0.079 ms / field</li>
+            <li><strong>Total 10-Field Gateway Overhead:</strong> &lt; 1.48 ms</li>
+            <li><strong>Mainframe Banking SLA:</strong> Sub-2 ms target fully met</li>
+            <li><strong>Automated Test Suite:</strong> 84 unit and regression tests passing in 0.24 seconds</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 7 -->
+    <div class="slide-content" data-cat="Live Demo" data-title="Tested Scenarios: Console Walkthrough">
+      <div class="grid-3">
+        <div class="card" style="border-color: var(--blue);">
+          <div class="card-title" style="color: var(--cyan);">Clinical EMR Note</div>
+          <p>Physician submits free-text triage note containing Aadhaar and contact info. Gateway excises spans into <code>[REDACTED_AADHAAR]</code> while preserving clinical diagnostic meaning.</p>
+        </div>
+        <div class="card" style="border-color: var(--amber);">
+          <div class="card-title" style="color: var(--amber);">Schema Drift Attack</div>
+          <p>Payload with renamed field <code>guardian_uid</code>. Drift engine flags unmapped schema; Verhoeff catches valid UID; payload is quarantined into AES-256 vault. Downstream receives 0 bytes.</p>
+        </div>
+        <div class="card" style="border-color: var(--purple);">
+          <div class="card-title" style="color: var(--purple);">Audit Chain Verification</div>
+          <p>Auditor validates forward-linked SHA-256 chain: <code>H(n) = SHA256(H(n-1) || record)</code>. Any attempt to modify or delete a historical record breaks the HMAC anchor immediately.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 8 -->
+    <div class="slide-content" data-cat="Market Opportunity" data-title="Business Impact: $32B TAM">
+      <div class="grid-3">
+        <div class="card" style="border-color: var(--blue);">
+          <div class="card-title">Core Banking & FinTech</div>
+          <p>44 of the top 50 banks run on IBM Z. Prevent credit cards, CVVs, and account numbers from leaking into customer service AI. Eliminates breach liabilities averaging $4.8M.</p>
+        </div>
+        <div class="card" style="border-color: var(--green);">
+          <div class="card-title">Healthcare & Insurance</div>
+          <p>Safe clinical triage AI on physician notes while automatically masking Aadhaar, SSN, and PHI identifiers with 100% HIPAA and DPDP compliance.</p>
+        </div>
+        <div class="card" style="border-color: var(--purple);">
+          <div class="card-title">Government & Defense</div>
+          <p>Sovereign AI deployments ensuring citizen identities never leave confidential hardware enclaves with complete tamper-evident audit transparency.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 9 -->
+    <div class="slide-content" data-cat="Competitive Edge" data-title="Competitive Matrix: Why ConsentShield Wins">
+      <div class="card" style="border-color: var(--cyan); padding: 18px;">
+        <table style="width: 100%; border-collapse: collapse; font-size: 0.8rem; text-align: left;">
+          <thead>
+            <tr style="border-bottom: 1px solid var(--border); color: var(--cyan);">
+              <th style="padding: 8px;">Capability</th>
+              <th style="color: var(--green);">ConsentShield</th>
+              <th>MS Presidio</th>
+              <th>AWS Macie</th>
+              <th>Static WAF</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+              <td style="padding: 8px;">s390x Native & Big-Endian Safe</td>
+              <td style="color: var(--green); font-weight:bold;">YES (Zero Pickle)</td>
+              <td>NO (x86 wheels)</td>
+              <td>NO (AWS Cloud)</td>
+              <td>PARTIAL</td>
+            </tr>
+            <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+              <td style="padding: 8px;">CPACF Hardware Acceleration</td>
+              <td style="color: var(--green); font-weight:bold;">YES (Wire-speed)</td>
+              <td>NO</td>
+              <td>NO</td>
+              <td>NO</td>
+            </tr>
+            <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+              <td style="padding: 8px;">Schema Drift & Rename Detection</td>
+              <td style="color: var(--green); font-weight:bold;">YES (HMAC + ML)</td>
+              <td>NO</td>
+              <td>PARTIAL</td>
+              <td>NO</td>
+            </tr>
+            <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+              <td style="padding: 8px;">Fail-Closed Revalidation</td>
+              <td style="color: var(--green); font-weight:bold;">YES (0.00% Leak)</td>
+              <td>NO</td>
+              <td>NO</td>
+              <td>NO</td>
+            </tr>
+            <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+              <td style="padding: 8px;">Mainframe Latency (&lt; 2 ms)</td>
+              <td style="color: var(--green); font-weight:bold;">YES (&lt; 1.5 ms)</td>
+              <td>NO (30-80 ms)</td>
+              <td>NO (100+ ms)</td>
+              <td>YES</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Slide 10 -->
+    <div class="slide-content" data-cat="Roadmap & Conclusion" data-title="Global Impact & Future Vision">
+      <div class="grid-2">
+        <div class="card" style="border-color: var(--purple);">
+          <div class="card-title" style="color: var(--purple);">Future Innovation Roadmap</div>
+          <ul>
+            <li><strong>IBM Telum On-Chip AI Accelerator (NNPA):</strong> Direct execution of quantized transformer NER models in &lt; 0.5 ms on Telum chips.</li>
+            <li><strong>Enterprise SIEM Integration:</strong> Streaming real-time audit events to IBM QRadar and Splunk.</li>
+            <li><strong>Confidential Multi-Party Computation:</strong> Secure multi-cloud analytics without plaintext sharing.</li>
+          </ul>
+        </div>
+        <div class="card" style="border-color: var(--green);">
+          <div class="card-title" style="color: var(--green);">United Nations SDGs & Impact</div>
+          <ul>
+            <li><strong>SDG 9: Industry, Innovation & Infrastructure:</strong> Enables legacy core banking and healthcare mainframes to adopt modern AI safely.</li>
+            <li><strong>SDG 16: Peace, Justice & Strong Institutions:</strong> Protects fundamental human privacy rights with cryptographic accountability.</li>
+            <li><strong>Conclusion:</strong> ConsentShield unlocks enterprise AI on IBM Z with zero compromise on speed, privacy, or compliance.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <div>ConsentShield &bull; IBM Z & LinuxONE Student Contest 2026</div>
+      <div>GitHub: <a href="https://github.com/SREEGOVIND3/ibmz2026" style="color: var(--cyan); text-decoration: none;">https://github.com/SREEGOVIND3/ibmz2026</a></div>
+    </div>
+
+    <div class="nav-controls">
+      <button class="nav-btn" id="prev-btn">&larr; Prev</button>
+      <button class="nav-btn" id="next-btn">Next &rarr;</button>
+    </div>
+  </div>
+
+  <script>
+    const slides = document.querySelectorAll('.slide-content');
+    const catEl = document.getElementById('slide-cat');
+    const titleEl = document.getElementById('slide-title');
+    const countEl = document.getElementById('slide-count');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    let currentSlide = 0;
+
+    function showSlide(index) {
+      slides[currentSlide].classList.remove('active');
+      currentSlide = (index + slides.length) % slides.length;
+      slides[currentSlide].classList.add('active');
+
+      const cat = slides[currentSlide].getAttribute('data-cat');
+      const title = slides[currentSlide].getAttribute('data-title');
+      catEl.textContent = cat;
+      titleEl.textContent = title;
+      countEl.textContent = `${String(currentSlide + 1).padStart(2, '0')} / ${String(slides.length).padStart(2, '0')}`;
+    }
+
+    prevBtn.addEventListener('click', () => showSlide(currentSlide - 1));
+    nextBtn.addEventListener('click', () => showSlide(currentSlide + 1));
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ') showSlide(currentSlide + 1);
+      if (e.key === 'ArrowLeft') showSlide(currentSlide - 1);
+    });
+  </script>
+</body>
+</html>

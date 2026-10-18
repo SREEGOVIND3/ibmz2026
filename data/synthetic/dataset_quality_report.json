@@ -1,0 +1,128 @@
+{
+  "files": {
+    "baseline_payloads.jsonl": {
+      "rows": 1000
+    },
+    "drift_payloads.jsonl": {
+      "rows": 6000,
+      "scenario_counts": {
+        "PII_IN_SAFE_TEXT_FIELD": 1000,
+        "NEW_SENSITIVE_FIELD": 1000,
+        "RENAMED_SENSITIVE_FIELD": 1000,
+        "TYPE_SHIFT": 1000,
+        "CREDENTIAL_LEAK": 1000,
+        "DISTRIBUTION_SHIFT": 1000
+      }
+    },
+    "policy_labels.jsonl": {
+      "rows": 7000,
+      "action_counts": {
+        "ALLOW": 1000,
+        "REDACT_SPAN": 1000,
+        "REVIEW": 2589,
+        "QUARANTINE_PAYLOAD": 1000,
+        "QUARANTINE_FIELD": 1411
+      },
+      "original_sensitive_count": 3411,
+      "unexpected_downstream_sensitive_count": 0
+    },
+    "consentshield_text_train.jsonl": {
+      "rows": 3215,
+      "positive_rows": 2009,
+      "negative_rows": 1206,
+      "entity_span_counts": {
+        "CONSENTSHIELD_IDENTITY": 311,
+        "CONSENTSHIELD_GOVERNMENT_ID": 380,
+        "CONSENTSHIELD_FINANCIAL": 380,
+        "CONSENTSHIELD_CONTACT": 380,
+        "CONSENTSHIELD_CREDENTIAL": 380,
+        "CONSENTSHIELD_HEALTH": 178
+      },
+      "unique_normalized_texts": 3215
+    },
+    "consentshield_text_validation.jsonl": {
+      "rows": 1440,
+      "positive_rows": 677,
+      "negative_rows": 763,
+      "entity_span_counts": {
+        "CONSENTSHIELD_IDENTITY": 103,
+        "CONSENTSHIELD_GOVERNMENT_ID": 128,
+        "CONSENTSHIELD_FINANCIAL": 128,
+        "CONSENTSHIELD_CONTACT": 128,
+        "CONSENTSHIELD_CREDENTIAL": 128,
+        "CONSENTSHIELD_HEALTH": 62
+      },
+      "unique_normalized_texts": 1440
+    },
+    "consentshield_text_test.jsonl": {
+      "rows": 1426,
+      "positive_rows": 754,
+      "negative_rows": 672,
+      "entity_span_counts": {
+        "CONSENTSHIELD_IDENTITY": 181,
+        "CONSENTSHIELD_GOVERNMENT_ID": 128,
+        "CONSENTSHIELD_FINANCIAL": 128,
+        "CONSENTSHIELD_CONTACT": 128,
+        "CONSENTSHIELD_CREDENTIAL": 128,
+        "CONSENTSHIELD_HEALTH": 61
+      },
+      "unique_normalized_texts": 1426
+    },
+    "field_classification_train.csv": {
+      "rows": 57869,
+      "sensitive_positive": 2689,
+      "drift_positive": 4741,
+      "sensitivity_category_counts": {
+        "CONSENTSHIELD_HEALTH": 93,
+        "CONSENTSHIELD_CREDENTIAL": 946,
+        "CONSENTSHIELD_CONTACT": 476,
+        "CONSENTSHIELD_FINANCIAL": 389,
+        "CONSENTSHIELD_GOVERNMENT_ID": 513,
+        "CONSENTSHIELD_IDENTITY": 272
+      },
+      "raw_value_column_present": false
+    },
+    "field_classification_validation.csv": {
+      "rows": 7454,
+      "sensitive_positive": 360,
+      "drift_positive": 602,
+      "sensitivity_category_counts": {
+        "CONSENTSHIELD_IDENTITY": 46,
+        "CONSENTSHIELD_CREDENTIAL": 121,
+        "CONSENTSHIELD_GOVERNMENT_ID": 66,
+        "CONSENTSHIELD_FINANCIAL": 57,
+        "CONSENTSHIELD_CONTACT": 60,
+        "CONSENTSHIELD_HEALTH": 10
+      },
+      "raw_value_column_present": false
+    },
+    "field_classification_test.csv": {
+      "rows": 7677,
+      "sensitive_positive": 362,
+      "drift_positive": 657,
+      "sensitivity_category_counts": {
+        "CONSENTSHIELD_IDENTITY": 36,
+        "CONSENTSHIELD_GOVERNMENT_ID": 69,
+        "CONSENTSHIELD_CREDENTIAL": 126,
+        "CONSENTSHIELD_FINANCIAL": 51,
+        "CONSENTSHIELD_CONTACT": 63,
+        "CONSENTSHIELD_HEALTH": 17
+      },
+      "raw_value_column_present": false
+    },
+    "adversarial_cases.jsonl": {
+      "rows": 12,
+      "action_counts": {
+        "REDACT_SPAN": 2,
+        "QUARANTINE_PAYLOAD": 2,
+        "ALLOW": 4,
+        "QUARANTINE_FIELD": 1,
+        "REVIEW": 2,
+        "BLOCK_FORWARD": 1
+      }
+    }
+  },
+  "warnings": [],
+  "cross_split_exact_text_leaks": 0,
+  "notes": "No exact synthetic text overlap detected across splits. This is a structural audit, not a model-quality guarantee."
+}

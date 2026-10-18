@@ -1,0 +1,92 @@
+{
+  "machine": "AMD64",
+  "splits": {
+    "train": {
+      "file": "data\\ai4privacy_converted\\train_gliner.jsonl",
+      "rows": 177677,
+      "rows_with_spans": 101334,
+      "rows_without_spans": 76343,
+      "empty_token_lists": 25,
+      "span_count_by_label": {
+        "CONSENTSHIELD_IDENTITY": 105047,
+        "CONSENTSHIELD_CONTACT": 58605,
+        "CONSENTSHIELD_CREDENTIAL": 51672
+      },
+      "total_spans": 215324,
+      "invalid_span_count": 0,
+      "unmapped_rows": 0,
+      "unmapped_span_count": 0,
+      "language_counts": {
+        "English": 29908,
+        "Dutch": 28433,
+        "French": 31447,
+        "German": 29976,
+        "Italian": 29066,
+        "Spanish": 28847
+      },
+      "source_counts": {
+        "ai4privacy": 177677
+      },
+      "token_count_p50": 49,
+      "token_count_p95_approx": 71
+    },
+    "validation": {
+      "file": "data\\ai4privacy_converted\\validation_gliner.jsonl",
+      "rows": 23864,
+      "rows_with_spans": 13629,
+      "rows_without_spans": 10235,
+      "empty_token_lists": 0,
+      "span_count_by_label": {
+        "CONSENTSHIELD_IDENTITY": 13931,
+        "CONSENTSHIELD_CONTACT": 7868,
+        "CONSENTSHIELD_CREDENTIAL": 7166
+      },
+      "total_spans": 28965,
+      "invalid_span_count": 0,
+      "unmapped_rows": 0,
+      "unmapped_span_count": 0,
+      "language_counts": {
+        "Spanish": 3852,
+        "Italian": 4022,
+        "English": 4044,
+        "Dutch": 3707,
+        "French": 4210,
+        "German": 4029
+      },
+      "source_counts": {
+        "ai4privacy": 23864
+      },
+      "token_count_p50": 49,
+      "token_count_p95_approx": 71
+    },
+    "test": {
+      "file": "data\\ai4privacy_converted\\test_gliner.jsonl",
+      "rows": 23864,
+      "rows_with_spans": 13659,
+      "rows_without_spans": 10205,
+      "empty_token_lists": 0,
+      "span_count_by_label": {
+        "CONSENTSHIELD_CONTACT": 8008,
+        "CONSENTSHIELD_IDENTITY": 13968,
+        "CONSENTSHIELD_CREDENTIAL": 6919
+      },
+      "total_spans": 28895,
+      "invalid_span_count": 0,
+      "unmapped_rows": 0,
+      "unmapped_span_count": 0,
+      "language_counts": {
+        "Dutch": 3750,
+        "German": 4091,
+        "Italian": 3954,
+        "French": 4203,
+        "English": 3902,
+        "Spanish": 3964
+      },
+      "source_counts": {
+        "ai4privacy": 23864
+      },
+      "token_count_p50": 49,
+      "token_count_p95_approx": 71
+    }
+  }
+}

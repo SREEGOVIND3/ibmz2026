@@ -1,0 +1,13 @@
+{
+  "model_version": "fieldclf-8e4b4dc05b8f",
+  "seed": 13,
+  "data_sha256_combined": "d705d18b00ad3a5166c56e9bf4fe5f2ebb71dd184a11083cfdf1d281065557ac",
+  "python": "3.13.15",
+  "machine": "AMD64",
+  "chosen_threshold": 0.15,
+  "caveats": [
+    "synthetic structured data",
+    "record-level split; no dedicated unseen-name split",
+    "s390x execution must be verified on LinuxONE"
+  ]
+}

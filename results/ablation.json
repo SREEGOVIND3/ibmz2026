@@ -1,0 +1,505 @@
+{
+  "environment": {
+    "python": "3.13.15",
+    "machine": "AMD64"
+  },
+  "classifier_version": "fieldclf-8e4b4dc05b8f",
+  "n_test_fields": 7677,
+  "test_positive_rate": 0.047153836133906474,
+  "field_level": {
+    "A validators": {
+      "n": 7677,
+      "precision": 1.0,
+      "recall": 0.6270718232044199,
+      "f1": 0.7707979626485569,
+      "fnr": 0.3729281767955801,
+      "fpr": 0.0,
+      "tp": 227,
+      "fp": 0,
+      "fn": 135,
+      "tn": 7315
+    },
+    "B validators + drift threshold": {
+      "n": 7677,
+      "precision": 1.0,
+      "recall": 0.6270718232044199,
+      "f1": 0.7707979626485569,
+      "fnr": 0.3729281767955801,
+      "fpr": 0.0,
+      "tp": 227,
+      "fp": 0,
+      "fn": 135,
+      "tn": 7315
+    },
+    "C classifier p>=0.50": {
+      "n": 7677,
+      "precision": 0.9808743169398907,
+      "recall": 0.9917127071823204,
+      "f1": 0.9862637362637362,
+      "fnr": 0.008287292817679558,
+      "fpr": 0.0009569377990430622,
+      "tp": 359,
+      "fp": 7,
+      "fn": 3,
+      "tn": 7308
+    },
+    "D classifier + drift threshold": {
+      "n": 7677,
+      "precision": 0.978021978021978,
+      "recall": 0.9834254143646409,
+      "f1": 0.9807162534435261,
+      "fnr": 0.016574585635359115,
+      "fpr": 0.0010936431989063567,
+      "tp": 356,
+      "fp": 8,
+      "fn": 6,
+      "tn": 7307
+    },
+    "E combined": {
+      "n": 7677,
+      "precision": 0.978021978021978,
+      "recall": 0.9834254143646409,
+      "f1": 0.9807162534435261,
+      "fnr": 0.016574585635359115,
+      "fpr": 0.0010936431989063567,
+      "tp": 356,
+      "fp": 8,
+      "fn": 6,
+      "tn": 7307
+    }
+  },
+  "payload_level": {
+    "A validators": {
+      "payload_count": 735,
+      "sensitive_payloads": 362,
+      "payload_leak_proxy_rate": 0.3729281767955801,
+      "payload_overflag_proxy_rate": 0.0
+    },
+    "B validators + drift threshold": {
+      "payload_count": 735,
+      "sensitive_payloads": 362,
+      "payload_leak_proxy_rate": 0.3729281767955801,
+      "payload_overflag_proxy_rate": 0.0
+    },
+    "C classifier p>=0.50": {
+      "payload_count": 735,
+      "sensitive_payloads": 362,
+      "payload_leak_proxy_rate": 0.008287292817679558,
+      "payload_overflag_proxy_rate": 0.009523809523809525
+    },
+    "D classifier + drift threshold": {
+      "payload_count": 735,
+      "sensitive_payloads": 362,
+      "payload_leak_proxy_rate": 0.016574585635359115,
+      "payload_overflag_proxy_rate": 0.010884353741496598
+    },
+    "E combined": {
+      "payload_count": 735,
+      "sensitive_payloads": 362,
+      "payload_leak_proxy_rate": 0.016574585635359115,
+      "payload_overflag_proxy_rate": 0.010884353741496598
+    }
+  },
+  "by_group": {
+    "all": {
+      "A validators": {
+        "n": 7677,
+        "precision": 1.0,
+        "recall": 0.6270718232044199,
+        "f1": 0.7707979626485569,
+        "fnr": 0.3729281767955801,
+        "fpr": 0.0,
+        "tp": 227,
+        "fp": 0,
+        "fn": 135,
+        "tn": 7315
+      },
+      "B validators + drift threshold": {
+        "n": 7677,
+        "precision": 1.0,
+        "recall": 0.6270718232044199,
+        "f1": 0.7707979626485569,
+        "fnr": 0.3729281767955801,
+        "fpr": 0.0,
+        "tp": 227,
+        "fp": 0,
+        "fn": 135,
+        "tn": 7315
+      },
+      "C classifier p>=0.50": {
+        "n": 7677,
+        "precision": 0.9808743169398907,
+        "recall": 0.9917127071823204,
+        "f1": 0.9862637362637362,
+        "fnr": 0.008287292817679558,
+        "fpr": 0.0009569377990430622,
+        "tp": 359,
+        "fp": 7,
+        "fn": 3,
+        "tn": 7308
+      },
+      "D classifier + drift threshold": {
+        "n": 7677,
+        "precision": 0.978021978021978,
+        "recall": 0.9834254143646409,
+        "f1": 0.9807162534435261,
+        "fnr": 0.016574585635359115,
+        "fpr": 0.0010936431989063567,
+        "tp": 356,
+        "fp": 8,
+        "fn": 6,
+        "tn": 7307
+      },
+      "E combined": {
+        "n": 7677,
+        "precision": 0.978021978021978,
+        "recall": 0.9834254143646409,
+        "f1": 0.9807162534435261,
+        "fnr": 0.016574585635359115,
+        "fpr": 0.0010936431989063567,
+        "tp": 356,
+        "fp": 8,
+        "fn": 6,
+        "tn": 7307
+      }
+    },
+    "new_field": {
+      "A validators": {
+        "n": 104,
+        "precision": 1.0,
+        "recall": 0.3287671232876712,
+        "f1": 0.49484536082474223,
+        "fnr": 0.6712328767123288,
+        "fpr": 0.0,
+        "tp": 24,
+        "fp": 0,
+        "fn": 49,
+        "tn": 31
+      },
+      "B validators + drift threshold": {
+        "n": 104,
+        "precision": 1.0,
+        "recall": 0.3287671232876712,
+        "f1": 0.49484536082474223,
+        "fnr": 0.6712328767123288,
+        "fpr": 0.0,
+        "tp": 24,
+        "fp": 0,
+        "fn": 49,
+        "tn": 31
+      },
+      "C classifier p>=0.50": {
+        "n": 104,
+        "precision": 0.9125,
+        "recall": 1.0,
+        "f1": 0.9542483660130718,
+        "fnr": 0.0,
+        "fpr": 0.22580645161290322,
+        "tp": 73,
+        "fp": 7,
+        "fn": 0,
+        "tn": 24
+      },
+      "D classifier + drift threshold": {
+        "n": 104,
+        "precision": 0.9012345679012346,
+        "recall": 1.0,
+        "f1": 0.948051948051948,
+        "fnr": 0.0,
+        "fpr": 0.25806451612903225,
+        "tp": 73,
+        "fp": 8,
+        "fn": 0,
+        "tn": 23
+      },
+      "E combined": {
+        "n": 104,
+        "precision": 0.9012345679012346,
+        "recall": 1.0,
+        "f1": 0.948051948051948,
+        "fnr": 0.0,
+        "fpr": 0.25806451612903225,
+        "tp": 73,
+        "fp": 8,
+        "fn": 0,
+        "tn": 23
+      }
+    },
+    "renamed_field": {
+      "A validators": {
+        "n": 112,
+        "precision": 1.0,
+        "recall": 0.6428571428571429,
+        "f1": 0.782608695652174,
+        "fnr": 0.35714285714285715,
+        "fpr": 0.0,
+        "tp": 54,
+        "fp": 0,
+        "fn": 30,
+        "tn": 28
+      },
+      "B validators + drift threshold": {
+        "n": 112,
+        "precision": 1.0,
+        "recall": 0.6428571428571429,
+        "f1": 0.782608695652174,
+        "fnr": 0.35714285714285715,
+        "fpr": 0.0,
+        "tp": 54,
+        "fp": 0,
+        "fn": 30,
+        "tn": 28
+      },
+      "C classifier p>=0.50": {
+        "n": 112,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "tp": 84,
+        "fp": 0,
+        "fn": 0,
+        "tn": 28
+      },
+      "D classifier + drift threshold": {
+        "n": 112,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "tp": 84,
+        "fp": 0,
+        "fn": 0,
+        "tn": 28
+      },
+      "E combined": {
+        "n": 112,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "tp": 84,
+        "fp": 0,
+        "fn": 0,
+        "tn": 28
+      }
+    },
+    "type_shift": {
+      "A validators": {
+        "n": 226,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "tn": 226
+      },
+      "B validators + drift threshold": {
+        "n": 226,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "tn": 226
+      },
+      "C classifier p>=0.50": {
+        "n": 226,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "tn": 226
+      },
+      "D classifier + drift threshold": {
+        "n": 226,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "tn": 226
+      },
+      "E combined": {
+        "n": 226,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "tn": 226
+      }
+    },
+    "distribution_shift": {
+      "A validators": {
+        "n": 104,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "tn": 104
+      },
+      "B validators + drift threshold": {
+        "n": 104,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "tn": 104
+      },
+      "C classifier p>=0.50": {
+        "n": 104,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "tn": 104
+      },
+      "D classifier + drift threshold": {
+        "n": 104,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "tn": 104
+      },
+      "E combined": {
+        "n": 104,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "tn": 104
+      }
+    },
+    "no_drift": {
+      "A validators": {
+        "n": 7131,
+        "precision": 1.0,
+        "recall": 0.7268292682926829,
+        "f1": 0.8418079096045198,
+        "fnr": 0.2731707317073171,
+        "fpr": 0.0,
+        "tp": 149,
+        "fp": 0,
+        "fn": 56,
+        "tn": 6926
+      },
+      "B validators + drift threshold": {
+        "n": 7131,
+        "precision": 1.0,
+        "recall": 0.7268292682926829,
+        "f1": 0.8418079096045198,
+        "fnr": 0.2731707317073171,
+        "fpr": 0.0,
+        "tp": 149,
+        "fp": 0,
+        "fn": 56,
+        "tn": 6926
+      },
+      "C classifier p>=0.50": {
+        "n": 7131,
+        "precision": 1.0,
+        "recall": 0.9853658536585366,
+        "f1": 0.9926289926289926,
+        "fnr": 0.014634146341463415,
+        "fpr": 0.0,
+        "tp": 202,
+        "fp": 0,
+        "fn": 3,
+        "tn": 6926
+      },
+      "D classifier + drift threshold": {
+        "n": 7131,
+        "precision": 1.0,
+        "recall": 0.9707317073170731,
+        "f1": 0.9851485148514851,
+        "fnr": 0.02926829268292683,
+        "fpr": 0.0,
+        "tp": 199,
+        "fp": 0,
+        "fn": 6,
+        "tn": 6926
+      },
+      "E combined": {
+        "n": 7131,
+        "precision": 1.0,
+        "recall": 0.9707317073170731,
+        "f1": 0.9851485148514851,
+        "fnr": 0.02926829268292683,
+        "fpr": 0.0,
+        "tp": 199,
+        "fp": 0,
+        "fn": 6,
+        "tn": 6926
+      }
+    }
+  },
+  "latency_ms": {
+    "classifier_total_test_ms": 606.7877999739721,
+    "validator_p50_ms_per_field": 0.006199989002197981,
+    "validator_p95_ms_per_field": 0.0171000137925148
+  },
+  "numeric_weights_top": {
+    "v_len": 26.968278335015313,
+    "v_alpha": -12.675673970319899,
+    "v_space": 4.908704263807809,
+    "v_embedded_any": 4.395187721247978,
+    "v_entropy": 3.479790636233207,
+    "v_symbol": 2.568312934366651,
+    "v_digit": 2.444399453454175,
+    "v_val_pan": 1.501372613784236,
+    "v_json_numeric": -1.2741024903613822,
+    "s_depth": -0.9180857728821686,
+    "d_new_field": 0.9076127529336474,
+    "d_type_shift": -0.3084485027431455,
+    "v_val_api_key_heuristic": 0.1567556130233495,
+    "d_dist_shift": -0.11359362092712608,
+    "v_val_email": 0.058471440448194224
+  },
+  "caveats": [
+    "Synthetic labels and scenarios",
+    "Field-level flags are not policy enforcement",
+    "No dedicated unseen-name split in supplied dataset",
+    "Latency is from this notebook environment; rerun on LinuxONE for s390x evidence"
+  ]
+}

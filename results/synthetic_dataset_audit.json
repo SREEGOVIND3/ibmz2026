@@ -1,0 +1,278 @@
+{
+  "machine": "AMD64",
+  "payload_count": 7000,
+  "baseline_count": 1000,
+  "drift_count": 6000,
+  "scenario_counts": {
+    "CLEAN": 1000,
+    "PII_IN_SAFE_TEXT_FIELD": 1000,
+    "NEW_SENSITIVE_FIELD": 1000,
+    "RENAMED_SENSITIVE_FIELD": 1000,
+    "TYPE_SHIFT": 1000,
+    "CREDENTIAL_LEAK": 1000,
+    "DISTRIBUTION_SHIFT": 1000
+  },
+  "policy_label_count": 7000,
+  "action_counts": {
+    "ALLOW": 1000,
+    "REDACT_SPAN": 1000,
+    "REVIEW": 2589,
+    "QUARANTINE_PAYLOAD": 1000,
+    "QUARANTINE_FIELD": 1411
+  },
+  "field_classification": {
+    "train": {
+      "rows": 57869,
+      "sensitive_positive": 2689,
+      "sensitive_negative": 55180,
+      "drift_positive": 4741,
+      "drift_negative": 53128,
+      "positive_rate": 0.046467020339041626
+    },
+    "validation": {
+      "rows": 7454,
+      "sensitive_positive": 360,
+      "sensitive_negative": 7094,
+      "drift_positive": 602,
+      "drift_negative": 6852,
+      "positive_rate": 0.04829621679635095
+    },
+    "test": {
+      "rows": 7677,
+      "sensitive_positive": 362,
+      "sensitive_negative": 7315,
+      "drift_positive": 657,
+      "drift_negative": 7020,
+      "positive_rate": 0.047153836133906474
+    }
+  },
+  "policy_issues": [],
+  "cross_split_group_count": 0,
+  "manifest": {
+    "generator": "ConsentShield corrected synthetic generator",
+    "seed": 42,
+    "structured_records_requested": 7000,
+    "structured_scenario_counts": {
+      "CLEAN": 1000,
+      "PII_IN_SAFE_TEXT_FIELD": 1000,
+      "NEW_SENSITIVE_FIELD": 1000,
+      "RENAMED_SENSITIVE_FIELD": 1000,
+      "TYPE_SHIFT": 1000,
+      "CREDENTIAL_LEAK": 1000,
+      "DISTRIBUTION_SHIFT": 1000
+    },
+    "split_counts": {
+      "train": 5551,
+      "validation": 714,
+      "test": 735
+    },
+    "field_feature_columns": [
+      "field_path",
+      "field_name",
+      "parent_path",
+      "value_type",
+      "value_length",
+      "digit_ratio",
+      "alpha_ratio",
+      "symbol_ratio",
+      "entropy",
+      "has_email_pattern",
+      "has_phone_pattern",
+      "has_card_pattern",
+      "has_government_id_pattern",
+      "has_credential_name_hint",
+      "is_new_field",
+      "is_renamed_field",
+      "has_type_shift",
+      "has_distribution_shift"
+    ],
+    "excluded_from_model_features": [
+      "record_id",
+      "group_id",
+      "split",
+      "category",
+      "scenario",
+      "expected_action",
+      "label_sensitive",
+      "label_drift_anomaly",
+      "raw value"
+    ],
+    "warning": "Synthetic data is for development and controlled evaluation; it does not establish real-world performance."
+  },
+  "quality_report": {
+    "files": {
+      "baseline_payloads.jsonl": {
+        "rows": 1000
+      },
+      "drift_payloads.jsonl": {
+        "rows": 6000,
+        "scenario_counts": {
+          "PII_IN_SAFE_TEXT_FIELD": 1000,
+          "NEW_SENSITIVE_FIELD": 1000,
+          "RENAMED_SENSITIVE_FIELD": 1000,
+          "TYPE_SHIFT": 1000,
+          "CREDENTIAL_LEAK": 1000,
+          "DISTRIBUTION_SHIFT": 1000
+        }
+      },
+      "policy_labels.jsonl": {
+        "rows": 7000,
+        "action_counts": {
+          "ALLOW": 1000,
+          "REDACT_SPAN": 1000,
+          "REVIEW": 2589,
+          "QUARANTINE_PAYLOAD": 1000,
+          "QUARANTINE_FIELD": 1411
+        },
+        "original_sensitive_count": 3411,
+        "unexpected_downstream_sensitive_count": 0
+      },
+      "consentshield_text_train.jsonl": {
+        "rows": 3215,
+        "positive_rows": 2009,
+        "negative_rows": 1206,
+        "entity_span_counts": {
+          "CONSENTSHIELD_IDENTITY": 311,
+          "CONSENTSHIELD_GOVERNMENT_ID": 380,
+          "CONSENTSHIELD_FINANCIAL": 380,
+          "CONSENTSHIELD_CONTACT": 380,
+          "CONSENTSHIELD_CREDENTIAL": 380,
+          "CONSENTSHIELD_HEALTH": 178
+        },
+        "unique_normalized_texts": 3215
+      },
+      "consentshield_text_validation.jsonl": {
+        "rows": 1440,
+        "positive_rows": 677,
+        "negative_rows": 763,
+        "entity_span_counts": {
+          "CONSENTSHIELD_IDENTITY": 103,
+          "CONSENTSHIELD_GOVERNMENT_ID": 128,
+          "CONSENTSHIELD_FINANCIAL": 128,
+          "CONSENTSHIELD_CONTACT": 128,
+          "CONSENTSHIELD_CREDENTIAL": 128,
+          "CONSENTSHIELD_HEALTH": 62
+        },
+        "unique_normalized_texts": 1440
+      },
+      "consentshield_text_test.jsonl": {
+        "rows": 1426,
+        "positive_rows": 754,
+        "negative_rows": 672,
+        "entity_span_counts": {
+          "CONSENTSHIELD_IDENTITY": 181,
+          "CONSENTSHIELD_GOVERNMENT_ID": 128,
+          "CONSENTSHIELD_FINANCIAL": 128,
+          "CONSENTSHIELD_CONTACT": 128,
+          "CONSENTSHIELD_CREDENTIAL": 128,
+          "CONSENTSHIELD_HEALTH": 61
+        },
+        "unique_normalized_texts": 1426
+      },
+      "field_classification_train.csv": {
+        "rows": 57869,
+        "sensitive_positive": 2689,
+        "drift_positive": 4741,
+        "sensitivity_category_counts": {
+          "CONSENTSHIELD_HEALTH": 93,
+          "CONSENTSHIELD_CREDENTIAL": 946,
+          "CONSENTSHIELD_CONTACT": 476,
+          "CONSENTSHIELD_FINANCIAL": 389,
+          "CONSENTSHIELD_GOVERNMENT_ID": 513,
+          "CONSENTSHIELD_IDENTITY": 272
+        },
+        "raw_value_column_present": false
+      },
+      "field_classification_validation.csv": {
+        "rows": 7454,
+        "sensitive_positive": 360,
+        "drift_positive": 602,
+        "sensitivity_category_counts": {
+          "CONSENTSHIELD_IDENTITY": 46,
+          "CONSENTSHIELD_CREDENTIAL": 121,
+          "CONSENTSHIELD_GOVERNMENT_ID": 66,
+          "CONSENTSHIELD_FINANCIAL": 57,
+          "CONSENTSHIELD_CONTACT": 60,
+          "CONSENTSHIELD_HEALTH": 10
+        },
+        "raw_value_column_present": false
+      },
+      "field_classification_test.csv": {
+        "rows": 7677,
+        "sensitive_positive": 362,
+        "drift_positive": 657,
+        "sensitivity_category_counts": {
+          "CONSENTSHIELD_IDENTITY": 36,
+          "CONSENTSHIELD_GOVERNMENT_ID": 69,
+          "CONSENTSHIELD_CREDENTIAL": 126,
+          "CONSENTSHIELD_FINANCIAL": 51,
+          "CONSENTSHIELD_CONTACT": 63,
+          "CONSENTSHIELD_HEALTH": 17
+        },
+        "raw_value_column_present": false
+      },
+      "adversarial_cases.jsonl": {
+        "rows": 12,
+        "action_counts": {
+          "REDACT_SPAN": 2,
+          "QUARANTINE_PAYLOAD": 2,
+          "ALLOW": 4,
+          "QUARANTINE_FIELD": 1,
+          "REVIEW": 2,
+          "BLOCK_FORWARD": 1
+        }
+      }
+    },
+    "warnings": [],
+    "cross_split_exact_text_leaks": 0,
+    "notes": "No exact synthetic text overlap detected across splits. This is a structural audit, not a model-quality guarantee."
+  },
+  "synthetic_text": {
+    "train": {
+      "rows": 3215,
+      "positive_rows": 2009,
+      "negative_rows": 1206,
+      "positive_rate": 0.6248833592534992,
+      "span_counts": {
+        "CONSENTSHIELD_IDENTITY": 311,
+        "CONSENTSHIELD_GOVERNMENT_ID": 380,
+        "CONSENTSHIELD_FINANCIAL": 380,
+        "CONSENTSHIELD_CONTACT": 380,
+        "CONSENTSHIELD_CREDENTIAL": 380,
+        "CONSENTSHIELD_HEALTH": 178
+      },
+      "invalid_spans": 0
+    },
+    "validation": {
+      "rows": 1440,
+      "positive_rows": 677,
+      "negative_rows": 763,
+      "positive_rate": 0.4701388888888889,
+      "span_counts": {
+        "CONSENTSHIELD_IDENTITY": 103,
+        "CONSENTSHIELD_GOVERNMENT_ID": 128,
+        "CONSENTSHIELD_FINANCIAL": 128,
+        "CONSENTSHIELD_CONTACT": 128,
+        "CONSENTSHIELD_CREDENTIAL": 128,
+        "CONSENTSHIELD_HEALTH": 62
+      },
+      "invalid_spans": 0
+    },
+    "test": {
+      "rows": 1426,
+      "positive_rows": 754,
+      "negative_rows": 672,
+      "positive_rate": 0.5287517531556802,
+      "span_counts": {
+        "CONSENTSHIELD_IDENTITY": 181,
+        "CONSENTSHIELD_GOVERNMENT_ID": 128,
+        "CONSENTSHIELD_FINANCIAL": 128,
+        "CONSENTSHIELD_CONTACT": 128,
+        "CONSENTSHIELD_CREDENTIAL": 128,
+        "CONSENTSHIELD_HEALTH": 61
+      },
+      "invalid_spans": 0
+    }
+  },
+  "text_cross_split_group_count": 0
+}

@@ -130,19 +130,151 @@ class TextDetector(Protocol):
 
 
 # --------------------------------------------------------------------------- #
-# Deterministic fallback
+# Deterministic fallback + Contextual Heuristics
 # --------------------------------------------------------------------------- #
+import re
+
+_CONTEXT_PATTERNS = [
+    # 1. Credentials, Passwords, PINs, Secrets, Tokens, API Keys
+    (
+        re.compile(r"(?i)\b(?:password|passwd|pwd|passcode|pass|secret\s*key|secret|client\s*secret|auth\s*token|access\s*token|bearer|api\s*key|apikey|api_key|token|pin\s*code|atm\s*pin|pin)\s*(?:for\s+[\w.-]+)?\s*(?:is|:|=|-|\s)\s*([A-Za-z0-9!@#$%^&*()_+\-={}|;:<>.?]{4,64})\b"),
+        "PASSWORD",
+    ),
+    (
+        re.compile(r"\b(eyJ[A-Za-z0-9-_]+\.eyJ[A-Za-z0-9-_]+\.[A-Za-z0-9-_]+)\b"),
+        "API_KEY",
+    ),
+    (
+        re.compile(r"\b(sk-[a-zA-Z0-9]{20,})\b"),
+        "API_KEY",
+    ),
+    (
+        re.compile(r"\b(ghp_[a-zA-Z0-9]{36}|github_pat_[a-zA-Z0-9_]{40,})\b"),
+        "API_KEY",
+    ),
+    (
+        re.compile(r"\b((?:AKIA|ABIA|ACCA|ASIA)[0-9A-Z]{16})\b"),
+        "API_KEY",
+    ),
+    (
+        re.compile(r"\b(AIza[0-9A-Za-z-_]{35})\b"),
+        "API_KEY",
+    ),
+
+    # 2. Government & National IDs (Aadhaar, PAN, Passport, DL, SSN, Voter ID)
+    (
+        re.compile(r"(?i)\b(?:aadhaar|aadhar|uidai|uid|adhar)\s*(?:card|number|no|num)?\s*(?:is|:|=|-)?\s*([2-9]\d{3}[ -]?\d{4}[ -]?\d{4})\b"),
+        "GOVERNMENT_ID",
+    ),
+    (
+        re.compile(r"\b([xX*]{4}[ -]?[xX*]{4}[ -]?\d{4})\b"),
+        "GOVERNMENT_ID",
+    ),
+    (
+        re.compile(r"(?i)\b(?:pan\s*(?:card|number|no|num)?)\s*(?:is|:|=|-)?\s*([A-Za-z]{5}\d{4}[A-Za-z])\b"),
+        "GOVERNMENT_ID",
+    ),
+    (
+        re.compile(r"\b([a-zA-Z]{5}[0-9]{4}[a-zA-Z])\b"),
+        "GOVERNMENT_ID",
+    ),
+    (
+        re.compile(r"(?i)\b(?:passport\s*(?:number|no|num)?)\s*(?:is|:|=|-)?\s*([A-Za-z][0-9]{7,8})\b"),
+        "GOVERNMENT_ID",
+    ),
+    (
+        re.compile(r"\b([A-PR-WYa-pr-wy][1-9]\d{7})\b"),
+        "GOVERNMENT_ID",
+    ),
+    (
+        re.compile(r"(?i)\b(?:driving\s*licen[sc]e|dl\s*(?:no|number)?)\s*(?:is|:|=|-)?\s*([A-Za-z]{2}[0-9]{2}[ -]?[0-9]{7,11})\b"),
+        "GOVERNMENT_ID",
+    ),
+    (
+        re.compile(r"(?i)\b(?:ssn|social\s*security\s*(?:no|number)?)\s*(?:is|:|=|-)?\s*(\d{3}[ -]?\d{2}[ -]?\d{4}|\d{9})\b"),
+        "GOVERNMENT_ID",
+    ),
+    (
+        re.compile(r"\b(\d{3}-\d{2}-\d{4})\b"),
+        "GOVERNMENT_ID",
+    ),
+    (
+        re.compile(r"(?i)\b(?:voter\s*id|epic\s*no)\s*(?:is|:|=|-)?\s*([A-Za-z]{3}[0-9]{7})\b"),
+        "GOVERNMENT_ID",
+    ),
+
+    # 3. Financial (Bank Account, Credit/Debit Cards, UPI IDs, CVV)
+    (
+        re.compile(r"(?i)\b(?:account\s*(?:number|no|num)?|acct|a/c\s*(?:no|num|number)?|bank\s*acc(?:ount)?|savings\s*account)\s*(?:is|for\s+[\w.-]+|:|=|-)?\s*(\d{8,18})\b"),
+        "BANK_ACCOUNT",
+    ),
+    (
+        re.compile(r"(?i)\b([a-zA-Z0-9_.-]+@(okhdfcbank|okaxis|oksbi|okicici|paytm|ybl|apl|upi|axl|ibl|barodampay|pnb|allbank|axisbank|dbs|federal|hdfcbank|icici|indus|kbl|kotak|sbi|yesbank))\b"),
+        "BANK_ACCOUNT",
+    ),
+    (
+        re.compile(r"(?i)\b(?:upi\s*id|vpa)\s*(?:is|:|=|-)?\s*([a-zA-Z0-9_.-]+@[a-zA-Z0-9]+)\b"),
+        "BANK_ACCOUNT",
+    ),
+    (
+        re.compile(r"(?i)\b(?:card\s*(?:number|no|num)?|credit\s*card|debit\s*card)\s*(?:is|:|=|-)?\s*(\d{4}[ -]?\d{4}[ -]?\d{4}[ -]?\d{4})\b"),
+        "CREDIT_CARD_NUMBER",
+    ),
+    (
+        re.compile(r"(?i)\b(?:cvv|cvc|security\s*code)\s*(?:is|:|=|-)?\s*(\d{3,4})\b"),
+        "CREDIT_CARD_NUMBER",
+    ),
+
+    # 4. Dates & Personal Identifiers (DOB, Explicit Name introductions)
+    (
+        re.compile(r"(?i)\b(?:dob|date\s*of\s*birth|birth\s*date|born\s*(?:on)?)\s*(?:is|:|=|-)?\s*(\d{1,2}[/-]\d{1,2}[/-]\d{2,4}|\d{4}[/-]\d{1,2}[/-]\d{1,2})\b"),
+        "DATE_OF_BIRTH",
+    ),
+    (
+        re.compile(r"(?i)\b(?:patient\s*(?:name)?|my\s*name\s*is|name\s*(?:is|:))\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+){1,3})\b"),
+        "PERSON",
+    ),
+    (
+        re.compile(r"\b(Dr\.\s+[A-Z][a-z]+(?:\s+[A-Z][a-z]+){1,2})\b"),
+        "PERSON",
+    ),
+
+    # 5. Medical Records & Diagnoses
+    (
+        re.compile(r"(?i)\b(?:mrn|uhid|patient\s*id|medical\s*record\s*(?:no|number)?|health\s*id|opd|ipd)\s*(?:is|:|=|-)?\s*([A-Za-z0-9/-]{4,20})\b"),
+        "MEDICAL_RECORD",
+    ),
+    (
+        re.compile(r"(?i)\b(?:diagnos(?:is\s*(?:is|:)|ed\s*with)|suffering\s*from|medical\s*condition\s*(?:is|:)|prescribed|tested\s*positive\s*for)\s+([A-Za-z0-9\s-]{3,35})\b"),
+        "DIAGNOSIS",
+    ),
+]
+
+
 class ValidatorTextDetector:
-    """Fallback detector: validator hits as spans (score 1.0, deterministic)."""
+    """Fallback detector: validator hits as spans (score 1.0, deterministic) + contextual patterns."""
 
     source = "validators"
     model_version = "validators-v1"
 
     def detect(self, text: str) -> List[TextSpan]:
-        return [
+        raw_spans = [
             TextSpan(h.entity_label, h.start, h.end, 1.0, self.source, self.model_version)
             for h in V.scan_text(text)
         ]
+        context_spans: List[TextSpan] = []
+        for rx, label in _CONTEXT_PATTERNS:
+            for m in rx.finditer(text):
+                start, end = m.start(1), m.end(1)
+                context_spans.append(TextSpan(label, start, end, 0.98, "contextual_rule", self.model_version))
+
+        # Merge: if contextual span overlaps a validator hit, contextual span takes priority if it's more specific
+        combined = []
+        for v in raw_spans:
+            if not any(max(v.start, c.start) < min(v.end, c.end) for c in context_spans):
+                combined.append(v)
+        combined.extend(context_spans)
+        return _dedupe(combined)
 
 
 # --------------------------------------------------------------------------- #
