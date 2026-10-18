@@ -276,21 +276,6 @@ ibmz2026/
 
 ---
 
-## 🎥 Video Submission Recording Script
-
-For the official **Video Submission Link**, use the structured 3-minute presentation script below:
-
-* **0:00 – 0:30 (Problem & Regulatory Stakes):** State that IBM Z processes 70% of global banking and healthcare transactions. Explain how adopting Generative AI risks leaking Aadhaar, Credit Cards, and health records, exposing firms to 4% GDPR/DPDP penalties and schema drift evasion that bypasses static WAFs.
-* **0:30 – 1:00 (ConsentShield & IBM Z Co-Design):** Introduce ConsentShield. Explain the s390x architectural advantages: Big-Endian immunity with Zero-Pickle JSON, CPACF hardware cryptographic acceleration for SHA-256 and AES, and sub-1.5 ms latency preserving mainframe OLTP SLAs.
-* **1:00 – 2:15 (Live Streamlit Demonstration):**
-  * *Demo 1:* Show Clinical EMR free-text note with Aadhaar and doctor contact being excised into `[REDACTED_GOVERNMENT_ID]` with 0 diagnostic loss.
-  * *Demo 2:* Show a schema drift attack (`guardian_uid`) triggering immediate whole-payload quarantine into the AES-256 encrypted vault.
-  * *Demo 3:* Show the tamper-evident audit ledger and show how any alteration to historical records breaks the SHA-256 hash chain.
-* **2:15 – 2:45 (Empirical Benchmarks & Ablation):** Present the ablation table showing standalone regexes miss 37.3% of sensitive payloads, while ConsentShield with fail-closed revalidation achieves **0.00% leakage rate**.
-* **2:45 – 3:00 (Conclusion & Vision):** Conclude with alignment to UN SDGs 9 & 16 and roadmap for IBM Telum on-chip AI acceleration.
-
----
-
 <div align="center">
   <b>Built for the IBM Z & LinuxONE Student Contest 2026</b><br>
   <i>Empowering enterprise mainframe AI with guaranteed zero-leakage privacy and microsecond speed.</i>
