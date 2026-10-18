@@ -108,7 +108,7 @@ ConsentShield operates as a high-performance reverse proxy positioned between cl
 
 ## 🏛️ IBM Z & LinuxONE (`s390x`) Hardware Co-Design
 
-<img width="2752" height="1536" alt="Gemini_Generated_Image_c1xupcc1xupcc1xu" src="https://github.com/user-attachments/assets/3a3ebc03-ba9c-4511-9ab8-58972881b151" />
+<img width="1024" height="572" alt="ibmz_linuxone_co_design" src="https://github.com/user-attachments/assets/26db2437-b5b6-409c-acd6-75ea220cba61" />
 
 
 | Co-Design Pillar | Mainframe Advantage (`s390x`) | ConsentShield Implementation |
