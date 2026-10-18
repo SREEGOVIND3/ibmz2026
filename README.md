@@ -103,9 +103,7 @@ ConsentShield operates as a high-performance reverse proxy positioned between cl
 
 ## 🔄 End-to-End Solution Flowchart
 
-<div align="center">
-  <img src="docs/diagrams/solution_flowchart.png" alt="ConsentShield Solution Flowchart" width="850" />
-</div>
+<img width="2752" height="1536" alt="Gemini_Generated_Image_nfmkg7nfmkg7nfmk" src="https://github.com/user-attachments/assets/c8495d00-4a64-42c7-b058-246db63fe3f2" />
 
 ---
 
